@@ -4,12 +4,12 @@ bot.login(process.env.TOKEN)
 var prefix = ("?")
 
 bot.on('ready', function() {
-    bot.user.setPresence({ game: { name: 'les clients..', type: 2} })
+    bot.user.setPresence({ game: { name: 'la Minway', type: 2} })
     console.log("Connected");
 });
 
 bot.on("guildMemberAdd", member => {
-    const bvn = member.guild.channels.find(m => m.name === "🎭aéroport")
+    const bvn = member.guild.channels.find(m => m.name === "bienvenue")
     if (!bvn) return;
     const embed = new Discord.RichEmbed()
     .setColor('#009114')
@@ -20,37 +20,3 @@ bot.on("guildMemberAdd", member => {
     .setTimestamp()
     bvn.send(embed)
 })
-
-bot.on('guildMemberAdd', member => {
-    var role = member.guild.roles.find('name', 'Nouveau')
-    member.addRole(role)
-})
-bot.on("message", async function(message) {
-    if (message.author.equals(bot.user)) return;
-
-    if (!message.content.startsWith(prefix)) return;
-
-    var args = message.content.substring(prefix.length).split(" ");
-
-
-    switch(args[0].toLowerCase()) {
-        case "maintenance":
-        message.channel.send("", {
-            embed: {
-                color: 0xFF0000,
-                author: message.author.name,
-                title: '',
-                fields: [{
-                    name: "**⚠️ Le serveur est en maintenance ! ⚠️**",
-                    value: "[**Invite discord (partage quand même a tes potes !)**](https://discord.gg/RJcxGct)",
-                    inline: false
-                }],
-                footer: {
-                    footer: "Partager ce lien a tous vos amis !",
-                },
-            }
-        });
-        message.delete()
-        break;
-    }
-});
