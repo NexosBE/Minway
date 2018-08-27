@@ -9,7 +9,7 @@ bot.on('ready', function() {
 });
 
 bot.on("guildMemberAdd", member => {
-    const bvn = member.guild.channels.find(m => m.name === "bienvenue")
+    const bvn = member.guild.channels.find(m => m.name === "nouvelles-arrivées👥")
     if (!bvn) return;
     const embed = new Discord.RichEmbed()
     .setColor('#009114')
